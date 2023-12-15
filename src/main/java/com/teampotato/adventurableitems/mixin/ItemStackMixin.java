@@ -4,6 +4,7 @@ import com.teampotato.adventurableitems.AdventurableItems;
 import com.teampotato.adventurableitems.api.Adventurable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.entity.player.Player;
@@ -37,7 +38,7 @@ public abstract class ItemStackMixin {
 
     @Inject(method = "onItemUse", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/player/Abilities;mayBuild:Z", shift = At.Shift.BEFORE), locals = LocalCapture.CAPTURE_FAILEXCEPTION, cancellable = true)
     private void adventurableitems$onItemUse(UseOnContext arg, Function<UseOnContext, InteractionResult> callback, CallbackInfoReturnable<InteractionResult> cir, Player player, BlockPos blockPos, BlockInWorld cachedBlockInfo) {
-        if (player != null && !player.getAbilities().mayBuild && !this.hasAdventureModePlaceTagForBlock(arg.getLevel().registryAccess().registryOrThrow(Registry.BLOCK_REGISTRY), cachedBlockInfo)) {
+        if (player != null && !player.getAbilities().mayBuild && !this.hasAdventureModePlaceTagForBlock(arg.getLevel().registryAccess().registryOrThrow(Registries.BLOCK), cachedBlockInfo)) {
             if (AdventurableItems.ALLOW_EVERY_ITEM_USING_IN_ADVENTURE_MODE.get()) return;
             if (((Adventurable)this.getItem()).adventurableItems$isAdventurable()) return;
             cir.setReturnValue(InteractionResult.PASS);
