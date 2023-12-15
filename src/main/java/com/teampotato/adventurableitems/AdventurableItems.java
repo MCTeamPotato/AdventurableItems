@@ -22,7 +22,7 @@ public class AdventurableItems {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CONFIG);
         FMLJavaModLoadingContext.get().getModEventBus().addListener((FMLCommonSetupEvent event) -> event.enqueueWork(() -> {
             for (Item item : ForgeRegistries.ITEMS) {
-                ResourceLocation id = item.getRegistryName();
+                ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
                 if (id == null) continue;
                 ((Adventurable)item).adventurableItems$setIsAdventurable(ADVENTURABLE_ITEMS.get().contains(id.toString()));
             }
