@@ -1,5 +1,6 @@
 package com.teampotato.adventurableitems.mixin;
 
+import com.teampotato.adventurableitems.AdventurableItems;
 import com.teampotato.adventurableitems.api.Adventurable;
 import net.minecraft.core.Registry;
 import net.minecraft.world.InteractionResult;
@@ -27,6 +28,7 @@ public abstract class ForgeHooksMixin {
     @Inject(method = "onPlaceItemIntoWorld", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/player/Abilities;mayBuild:Z", shift = At.Shift.BEFORE), cancellable = true, locals = LocalCapture.CAPTURE_FAILEXCEPTION)
     private static void adventurableitems$onPlaceItemIntoWorld(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir, ItemStack itemstack, Level world, Player player) {
         if (player != null && !itemstack.hasAdventureModePlaceTagForBlock(world.registryAccess().registryOrThrow(Registry.BLOCK_REGISTRY), new BlockInWorld(world, context.getClickedPos(), false))) {
+            if (AdventurableItems.ALLOW_EVERY_ITEM_USING_IN_ADVENTURE_MODE.get()) return;
             if (((Adventurable)itemstack.getItem()).adventurableItems$isAdventurable()) return;
             cir.setReturnValue(InteractionResult.PASS);
         }

@@ -31,11 +31,13 @@ public class AdventurableItems {
 
     private static final ForgeConfigSpec CONFIG;
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> ADVENTURABLE_ITEMS;
+    public static final ForgeConfigSpec.BooleanValue ALLOW_EVERY_ITEM_USING_IN_ADVENTURE_MODE;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
         builder.push("AdventurableItems");
         ADVENTURABLE_ITEMS = builder.defineList("ItemsUsableInAdventureMode", new ObjectArrayList<>(), o -> o instanceof String);
+        ALLOW_EVERY_ITEM_USING_IN_ADVENTURE_MODE = builder.define("AllowEveryItemUsingInAdventureMode", false);
         builder.pop();
         CONFIG = builder.build();
     }
