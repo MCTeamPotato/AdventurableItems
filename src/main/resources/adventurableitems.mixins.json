@@ -1,14 +1,13 @@
 {
   "required": true,
   "package": "com.teampotato.adventurableitems.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ItemMixin",
+    "ItemStackMixin",
+    "ServerPlayerMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "mixins": [
-    "ForgeHooksMixin",
-    "ItemMixin",
-    "ItemStackMixin"
-  ]
+	}
 }

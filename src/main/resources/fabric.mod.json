@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "adventurableitems",
+	"version": "${version}",
+	"name": "AdventurableItems",
+	"description": "A Minecraft Mod",
+	"authors": [
+		"TeamPotato"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/adventurable-items",
+		"sources": "https://github.com/MCTeamPotato/AdventurableItems"
+	},
+	"license": "LGPL-v3",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.teampotato.adventurableitems.AdventurableItems"
+		]
+	},
+	"mixins": [
+		"adventurableitems.mixins.json"
+	],
+	"depends": {
+		"minecraft": "*"
+	}
+}
